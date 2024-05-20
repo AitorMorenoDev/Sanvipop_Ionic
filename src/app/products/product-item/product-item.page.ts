@@ -30,7 +30,7 @@ import {
 } from '@ionic/angular/standalone';
 import {Product} from "../interfaces/product";
 import {ProductsService} from "../services/products.service";
-import {RouterLink} from "@angular/router";
+import {ActivatedRoute, RouterLink} from "@angular/router";
 import {refresh} from "ionicons/icons";
 import {AlertController} from "@ionic/angular";
 
@@ -42,7 +42,7 @@ import {AlertController} from "@ionic/angular";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonButton, IonIcon, RouterLink, IonLabel, IonItemGroup, IonItem, IonGrid, IonRow, IonCol, IonImg, IonText, IonItemDivider, IonRefresher, IonRefresherContent, IonRouterLink]
 })
-export class ProductItemPage {
+export class ProductItemPage implements OnInit {
   products: Product[] = [];
 
   #productsService = inject(ProductsService);
@@ -52,11 +52,18 @@ export class ProductItemPage {
   #alertCtrl = inject(AlertController);
   @Input() product!: Product | null;
   @Output() productDeleted = new EventEmitter<void>();
+  isDetailView = false;
 
   ionViewWillEnter() {
     this.#productsService
       .getProducts()
       .subscribe((prods) => (this.products = prods));
+  }
+
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.isDetailView = this.route.snapshot.routeConfig?.path === 'info';
   }
 
   addToFavs(product: Product) {

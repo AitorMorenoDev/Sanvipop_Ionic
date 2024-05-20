@@ -3,26 +3,55 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>{{ user.name }} profile</ion-title>
+    <ion-title>{{ user.name }}'s profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-card>
     <ion-card-header>
-      <ion-card-title> {{user.name }}</ion-card-title>
+      <ion-card-title> {{ user.name }}</ion-card-title>
     </ion-card-header>
+
     <ion-card-content>
-      <ion-avatar>
-        <img [src]="user.photo" alt="Foto de perfil">
-      </ion-avatar>
-      <ion-item>
-        <ion-label>
-          <h2>Nombre: {{ user.name }}</h2>
-          <p>Email: {{ user.email }}</p>
-        </ion-label>
-      </ion-item>
+      <ion-col>
+        <ion-row>
+          <ion-avatar>
+            <ion-img [src]="user.photo" alt="Foto de perfil"/>
+          </ion-avatar>
+
+          <ion-label>
+            <h2><strong>Name:</strong> {{ user.name }}</h2>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+          </ion-label>
+        </ion-row>
+
+      </ion-col>
+
+      @if (user.me){
+        <ion-col>
+          <ion-row>
+            <ion-button color="dark" (click)="editPhoto()">
+              <ion-icon name="camera-outline"></ion-icon>
+              Edit photo
+            </ion-button>
+            <ion-button color="dark" (click)="editProfile()" expand="block">
+              <ion-icon name="create-outline"></ion-icon>
+              Edit profile
+            </ion-button>
+            <ion-button color="dark" (click)="editPassword()" expand="block">
+              <ion-icon name="lock-closed-outline"></ion-icon>
+              Edit password
+            </ion-button>
+          </ion-row>
+        </ion-col>
+      }
+
+      <ion-col class="ion-justify-content-center ion-align-items-center">
+        <bm-map [coords]="coordinates!">
+          <bm-marker [coords]="coordinates!" color="purple"></bm-marker>
+        </bm-map>
+      </ion-col>
     </ion-card-content>
-    <div #map id="map"></div>
   </ion-card>
 </ion-content>

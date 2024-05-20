@@ -30,6 +30,7 @@
     "@capacitor/status-bar": "^6.0.0",
     "@ionic/angular": "^8.0.0",
     "@ionic/pwa-elements": "^3.3.0",
+    "@proteansoftware/capacitor-start-navigation": "^5.0.0",
     "ionicons": "^7.2.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

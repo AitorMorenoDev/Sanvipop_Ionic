@@ -30,9 +30,11 @@
           <ion-text>{{ product!.distance | number: '1.2-2'}}km</ion-text>
         </ion-col>
         <ion-col>
+          @if (!isDetailView) {
             <ion-button color="primary" [routerLink]="['/products', product!.id]" [routerDirection]="'forward'">
               <ion-icon slot="icon-only" name="eye"></ion-icon>
             </ion-button>
+          }
 
             <!-- If the product is mine and its on sale, I can edit or delete it. -->
             @if (product!.mine && product!.status === 1) {

@@ -48,7 +48,7 @@ import {
   heartOutline,
   cashOutline,
   filterOutline,
-  mapOutline, navigate
+  mapOutline, navigate, createOutline, lockClosedOutline, cameraOutline
 } from 'ionicons/icons';
 import { User } from "./auth/interfaces/user";
 import { AuthService } from "./auth/service/auth.service";
@@ -77,7 +77,7 @@ export class AppComponent {
   constructor() {
     addIcons({  personOutline, personSharp, pricetagOutline, pricetagSharp, addOutline, addSharp, bagSharp, bagOutline, logIn, documentText,
     arrowUndoCircle, camera, images, checkmarkCircle, add, menu, trash, eye, close, logOut, pencil, informationCircle, pricetag, location, heart, heartOutline,
-    cashOutline, filterOutline, mapOutline, navigate});
+    cashOutline, filterOutline, mapOutline, navigate, createOutline, lockClosedOutline, cameraOutline});
 
     effect(() => {
       if (this.#authService.isLogged()) {
