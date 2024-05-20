@@ -1,26 +1,24 @@
-import {Component, EventEmitter, inject, Output} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {
   AlertController,
-  NavController,
-  IonHeader,
-  IonToolbar,
-  IonContent,
+  IonAvatar,
+  IonButton,
   IonCard,
   IonCardContent,
-  IonCardTitle,
   IonCardSubtitle,
-  IonButton,
+  IonCardTitle,
+  IonContent,
+  IonHeader,
   IonIcon,
-  IonLabel,
   IonItem,
-  IonAvatar,
-  ToastController
+  IonLabel, IonText,
+  IonToolbar,
+  NavController
 } from '@ionic/angular/standalone';
 import {ProductsService} from '../../services/products.service';
 import {ProductDetailPage} from '../product-detail.page';
 import {CurrencyPipe} from '@angular/common';
 import {ProductItemPage} from "../../product-item/product-item.page";
-import {Product} from "../../interfaces/product";
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -28,7 +26,7 @@ import {Product} from "../../interfaces/product";
   templateUrl: './product-info.page.html',
   styleUrls: ['./product-info.page.scss'],
   standalone: true,
-  imports: [CurrencyPipe, IonHeader, IonToolbar, IonContent, IonCard, IonCardContent, IonCardTitle, IonCardSubtitle, IonButton, IonIcon, IonLabel, IonItem, IonAvatar, ProductItemPage],
+  imports: [CurrencyPipe, IonHeader, IonToolbar, IonContent, IonCard, IonCardContent, IonCardTitle, IonCardSubtitle, IonButton, IonIcon, IonLabel, IonItem, IonAvatar, ProductItemPage, IonText],
 })
 export class ProductInfoPage {
   product = inject(ProductDetailPage).product;
