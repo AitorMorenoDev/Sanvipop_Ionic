@@ -1,4 +1,5 @@
 import { Routes } from "@angular/router";
+import {leavePageGuard} from "../guards/leave-page.guard";
 
 export const authRoutes: Routes = [
   {
@@ -7,6 +8,7 @@ export const authRoutes: Routes = [
   },
   {
     path: 'register',
+    canDeactivate: [leavePageGuard],
     loadComponent: () => import('./register/register.page').then(m => m.RegisterPage),
   },
 ];

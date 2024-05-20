@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Filter</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      Select a filter
+    </ion-list-header>
+    <ion-radio-group [(ngModel)]="option">
+      <ion-item>
+        <ion-radio value="all" color="primary">All products</ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-radio value="favs" color="secondary">Favorite products</ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-radio value="sold" color="tertiary">Products sold</ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-radio value="bought" color="success">Products bought</ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+  <ion-button color="success" expand="block" (click)="choseOption()">
+    <ion-label>Select</ion-label>
+  </ion-button>
+</ion-content>

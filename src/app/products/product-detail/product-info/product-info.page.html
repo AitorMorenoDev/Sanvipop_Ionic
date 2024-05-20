@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar></ion-toolbar>
+</ion-header>
+
+<ion-content>
+  @if (product()) {
+    <product-item [product]="product()" (productDeleted)="goBack()"></product-item>
+    @if (!product()!.mine) {
+    <ion-content id="buyBtn">
+      <ion-button color="success" (click)="buyProduct()">
+        Buy product
+        <ion-icon name="cash-outline"></ion-icon>
+      </ion-button>
+    </ion-content>
+      }
+  }
+</ion-content>
+

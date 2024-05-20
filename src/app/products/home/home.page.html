@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Product List</ion-title>
+    <ion-searchbar [(ngModel)]="search" color="secondary"></ion-searchbar>
+    <ion-buttons slot="end" (click)="openFilterOptions()">
+      <ion-icon name="filter-outline"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher #refresher slot="fixed" (ionRefresh)="reloadProducts(refresher)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="secondary" [routerLink]="['/products/add']" [routerDirection]="'root'">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  @if (!filteredProducts().length) {
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>No products found with that search criteria.</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  } @else {
+    @for (product of filteredProducts(); track product.id) {
+      <product-item [product]="product" (productDeleted)="onProductDeleted()"></product-item>
+    }
+  }
+</ion-content>

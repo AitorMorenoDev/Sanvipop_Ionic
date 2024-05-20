@@ -20,9 +20,34 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
-  personOutline, personSharp, pricetagOutline, addOutline, pricetagSharp, addSharp, bagOutline, bagSharp, logIn,
-  documentText, arrowUndoCircle, camera, images, checkmarkCircle, eye, menu, add, trash, close, logOut, pencil, informationCircle,
-  pricetag, location, heart, heartOutline, cashOutline
+  personOutline,
+  personSharp,
+  pricetagOutline,
+  addOutline,
+  pricetagSharp,
+  addSharp,
+  bagOutline,
+  bagSharp,
+  logIn,
+  documentText,
+  arrowUndoCircle,
+  camera,
+  images,
+  checkmarkCircle,
+  eye,
+  menu,
+  add,
+  trash,
+  close,
+  logOut,
+  pencil,
+  informationCircle,
+  pricetag,
+  location,
+  heart,
+  heartOutline,
+  cashOutline,
+  filterOutline
 } from 'ionicons/icons';
 import { User } from "./auth/interfaces/user";
 import { AuthService } from "./auth/service/auth.service";
@@ -51,7 +76,7 @@ export class AppComponent {
   constructor() {
     addIcons({  personOutline, personSharp, pricetagOutline, pricetagSharp, addOutline, addSharp, bagSharp, bagOutline, logIn, documentText,
     arrowUndoCircle, camera, images, checkmarkCircle, add, menu, trash, eye, close, logOut, pencil, informationCircle, pricetag, location, heart, heartOutline,
-    cashOutline, });
+    cashOutline, filterOutline});
 
     effect(() => {
       if (this.#authService.isLogged()) {

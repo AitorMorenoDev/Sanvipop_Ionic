@@ -1,0 +1,62 @@
+<ion-card>
+  <ion-img id="productPhoto" [src]="product!.mainPhoto" alt="" [routerLink]="['/products', product!.id]" [routerDirection]="'forward'"/>
+  <ion-card-header>
+    <ion-card-title>{{product!.title}}</ion-card-title>
+    <ion-card-subtitle> {{ product!.description }}</ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="8">{{ product!.category.name }}</ion-col>
+        <ion-col></ion-col>
+        <ion-col>{{product!.price | currency:'EUR':'symbol'}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-item-divider color="dark">
+          <ion-col>
+            <ion-img id="ownerPhoto" [src]="product!.owner.photo" alt=""
+                     [routerLink]="['/profile', product!.owner.id!]" [routerDirection]="'root'"/>
+          </ion-col>
+           <ion-col>
+              <ion-row>{{ product!.owner.name }}</ion-row>
+              <ion-row>{{ product!.datePublished | date: 'HH:mm dd/MM/yyyy' }}</ion-row>
+            </ion-col>
+        </ion-item-divider>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-text>{{ product!.numVisits }} <ion-icon name="eye"></ion-icon></ion-text>
+          <ion-text>{{ product!.distance | number: '1.2-2'}}km</ion-text>
+        </ion-col>
+        <ion-col>
+            <ion-button color="primary" [routerLink]="['/products', product!.id]" [routerDirection]="'forward'">
+              <ion-icon slot="icon-only" name="eye"></ion-icon>
+            </ion-button>
+
+            <!-- If the product is mine and its on sale, I can edit or delete it. -->
+            @if (product!.mine && product!.status === 1) {
+              <ion-button color="warning" [routerLink]="['/products', product!.id, 'edit']" [routerDirection]="'root'">
+                <ion-icon slot="icon-only" name="pencil"></ion-icon>
+              </ion-button>
+              <ion-button color="danger" (click)="deleteProduct(product!)">
+                <ion-icon slot="icon-only" name="trash"></ion-icon>
+              </ion-button>
+            } @else {
+              <!-- Show the (un)bookmark button depending on the product bookmarked status. -->
+              @if (!product!.bookmarked && product!.status === 1) {
+                <ion-button color="success" (click)="addToFavs(product!)">
+                  <ion-icon slot="icon-only" name="heart-outline"></ion-icon>
+                </ion-button>
+              } @else {
+                <ion-button color="success" (click)="removeFromFavs(product!)">
+                  <ion-icon slot="icon-only" name="heart"></ion-icon>
+                </ion-button>
+              }
+            }
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-card-content>
+</ion-card>

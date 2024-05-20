@@ -1,0 +1,33 @@
+ion-card {
+  border-radius: 15px;
+}
+
+ion-card-title {
+  font-size: 20px;
+}
+
+ion-card-subtitle {
+  font-size: 16px;
+}
+
+ion-card-content {
+  font-size: 14px;
+}
+
+ion-button {
+  color: #007bff;
+  justify-content: end;
+}
+
+#ownerPhoto {
+  width: 50px;
+  height: 50px;
+
+  &::part(image) {
+    border-radius: 50%;
+  }
+}
+
+#productPhoto::part(image) {
+  border-radius: 15px;
+}
