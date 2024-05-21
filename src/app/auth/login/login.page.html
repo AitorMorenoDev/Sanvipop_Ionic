@@ -18,15 +18,29 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-button type="submit" color="primary" expand="block" [disabled]="loginForm.invalid">
+          <ion-button type="submit" color="success" expand="block" [disabled]="loginForm.invalid">
             <ion-icon name="log-in" slot="start"></ion-icon>
-            Login
+            <ion-label>Login</ion-label>
           </ion-button>
         </ion-col>
         <ion-col>
-          <ion-button color="tertiary" expand="block" [routerLink]="['/auth/register']" [routerDirection]="'root'">
+          <ion-button color="primary" expand="block" [routerLink]="['/auth/register']" [routerDirection]="'root'">
             <ion-icon name="document-text" slot="start"></ion-icon>
-            Register
+            <ion-label>Register</ion-label>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button color="dark" class="gBtn" expand="block" (click)="googleLogin()">
+            <ion-icon name="logo-google" slot="start"></ion-icon>
+            <ion-label>Login</ion-label>
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button color="tertiary" class="fbBtn" expand="block" (click)="fbLogin()" [disabled]="accessToken !== ''">
+            <ion-icon name="logo-facebook" slot="start"></ion-icon>
+            Login
           </ion-button>
         </ion-col>
       </ion-row>

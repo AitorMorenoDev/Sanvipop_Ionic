@@ -7,7 +7,7 @@ import {
   IonContent, IonGrid,
   IonHeader, IonIcon,
   IonInput,
-  IonItem,
+  IonItem, IonLabel,
   IonList, IonRow,
   IonTitle,
   IonToolbar,
@@ -19,18 +19,22 @@ import {RouterLink} from "@angular/router";
 import {Geolocation} from "@capacitor/geolocation";
 import {Coordinates} from "../../bingmaps/coordinates";
 import {UserLogin} from "../interfaces/user";
+//import { GoogleAuth, User } from '@codetrix-studio/capacitor-google-auth';
+import { FacebookLogin, FacebookLoginResponse } from '@capacitor-community/facebook-login';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, IonInput, IonGrid, IonRow, IonCol, IonButton, IonIcon, RouterLink]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, IonInput, IonGrid, IonRow, IonCol, IonButton, IonIcon, RouterLink, IonLabel]
 })
 export class LoginPage implements OnInit {
   email='';
   password='';
   coords?: Coordinates;
+  //user!: User;
+  accessToken = '';
 
   #authService = inject(AuthService);
   #alertCtrl = inject(AlertController);
@@ -42,6 +46,11 @@ export class LoginPage implements OnInit {
         enableHighAccuracy: true
       });
       this.coords = coordinates.coords;
+
+      const resp= (await FacebookLogin.getCurrentAccessToken()) as FacebookLoginResponse;
+      if (resp.accessToken) {
+        this.accessToken = resp.accessToken.token;
+      }
     } catch (error) {
       console.error("Error getting location: ", error);
       this.coords = {latitude: 0, longitude: 0};
@@ -70,6 +79,23 @@ export class LoginPage implements OnInit {
       );
   }
 
-  constructor() { }
+  async googleLogin() {
+    /*try {
+      console.log('Starting Google sign-in');
+      console.log(this.user);
+      this.user = await GoogleAuth.signIn();
+      console.log('Google sign-in successful', this.user);
+    } catch (err) {
+      console.error(err);
+    }*/
+  }
 
+  async fbLogin() {
+    const resp = (await FacebookLogin.login({
+      permissions: ['email'],
+    })) as FacebookLoginResponse;
+    if (resp.accessToken) {
+      this.accessToken = resp.accessToken.token;
+    }
+  }
 }

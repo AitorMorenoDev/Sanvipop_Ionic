@@ -5,6 +5,8 @@ import {Observable, catchError, from, map, of, switchMap, throwError} from 'rxjs
 import {User, UserLogin} from '../interfaces/user';
 import {Router} from "@angular/router";
 import {NavController} from "@ionic/angular/standalone";
+//import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import { FacebookLogin } from '@capacitor-community/facebook-login';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +50,9 @@ export class AuthService {
   async logout(): Promise<void> {
     await Preferences.remove({key: 'fs-token'});
     this.#logged.set(false);
+
+    //await GoogleAuth.signOut();
+    //await FacebookLogin.logout();
   }
 
   isLogged(): Observable<boolean> {

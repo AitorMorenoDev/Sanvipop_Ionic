@@ -50,7 +50,7 @@
                 <ion-button color="success" (click)="addToFavs(product!)">
                   <ion-icon slot="icon-only" name="heart-outline"></ion-icon>
                 </ion-button>
-              } @else {
+              } @else if (product!.bookmarked && product!.status === 1) {
                 <ion-button color="success" (click)="removeFromFavs(product!)">
                   <ion-icon slot="icon-only" name="heart"></ion-icon>
                 </ion-button>

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import {Component, effect, inject} from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import {HttpClientModule} from "@angular/common/http";
+//import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import {
   IonApp,
   IonSplitPane,
@@ -48,7 +49,7 @@ import {
   heartOutline,
   cashOutline,
   filterOutline,
-  mapOutline, navigate, createOutline, lockClosedOutline, cameraOutline
+  mapOutline, navigate, createOutline, lockClosedOutline, cameraOutline, logoGoogle, logoFacebook
 } from 'ionicons/icons';
 import { User } from "./auth/interfaces/user";
 import { AuthService } from "./auth/service/auth.service";
@@ -77,7 +78,7 @@ export class AppComponent {
   constructor() {
     addIcons({  personOutline, personSharp, pricetagOutline, pricetagSharp, addOutline, addSharp, bagSharp, bagOutline, logIn, documentText,
     arrowUndoCircle, camera, images, checkmarkCircle, add, menu, trash, eye, close, logOut, pencil, informationCircle, pricetag, location, heart, heartOutline,
-    cashOutline, filterOutline, mapOutline, navigate, createOutline, lockClosedOutline, cameraOutline});
+    cashOutline, filterOutline, mapOutline, navigate, createOutline, lockClosedOutline, cameraOutline, logoGoogle, logoFacebook});
 
     effect(() => {
       if (this.#authService.isLogged()) {
@@ -96,6 +97,7 @@ export class AppComponent {
       SplashScreen.hide().then();
       StatusBar.setBackgroundColor({color: '#3880ff'}).then();
       StatusBar.setStyle({style: Style.Dark}).then();
+      //GoogleAuth.signIn().then();
     }
   }
 

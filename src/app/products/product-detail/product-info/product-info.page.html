@@ -7,10 +7,12 @@
     <product-item [product]="product()" (productDeleted)="goBack()"></product-item>
     @if (!product()!.mine) {
     <ion-content id="buyBtn">
+      @if (product()!.status === 1) {
       <ion-button color="success" (click)="buyProduct()">
         Buy product
         <ion-icon name="cash-outline"></ion-icon>
       </ion-button>
+      }
     </ion-content>
       }
   }
