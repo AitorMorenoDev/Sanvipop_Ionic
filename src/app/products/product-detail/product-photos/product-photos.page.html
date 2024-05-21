@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Photos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <swiper-container>
+    @for (photo of product()!.photos; track photo.id) {
+      <swiper-slide>
+        <ion-row>
+          <img [src]="photo.url" width="400" height="400" alt="" />
+        </ion-row>
+        @if (product()!.mine){
+          <ion-row>
+            <ion-button color="success" (click)="addPhoto()">
+              <ion-icon name="add"></ion-icon>Add
+            </ion-button>
+            <ion-button color="warning" (click)="mainPhoto(photo.id!)">
+              <ion-icon name="image"></ion-icon>Set as main
+            </ion-button>
+            <ion-button color="danger" (click)="deletePhoto(photo.id!)">
+              <ion-icon name="trash"></ion-icon>Delete
+            </ion-button>
+          </ion-row>
+        }
+      </swiper-slide>
+    }
+  </swiper-container>
+</ion-content>

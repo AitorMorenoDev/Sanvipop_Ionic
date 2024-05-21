@@ -9,6 +9,13 @@ export const productDetailRoutes: Routes = [
       ),
   },
   {
+    path: 'photos',
+    loadComponent: () =>
+      import('./product-photos/product-photos.page').then(
+        (m) => m.ProductPhotosPage
+      ),
+  },
+  {
     path: 'location',
     loadComponent: () =>
       import('./product-location/product-location.page').then(

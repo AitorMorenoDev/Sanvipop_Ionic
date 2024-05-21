@@ -49,12 +49,22 @@ import {
   heartOutline,
   cashOutline,
   filterOutline,
-  mapOutline, navigate, createOutline, lockClosedOutline, cameraOutline, logoGoogle, logoFacebook
+  mapOutline,
+  navigate,
+  createOutline,
+  lockClosedOutline,
+  cameraOutline,
+  logoGoogle,
+  logoFacebook,
+  image,
+  starHalf,
+  star,
 } from 'ionicons/icons';
 import { User } from "./auth/interfaces/user";
 import { AuthService } from "./auth/service/auth.service";
 import { SplashScreen } from '@capacitor/splash-screen';
 import { StatusBar, Style } from '@capacitor/status-bar';
+
 
 @Component({
   selector: 'app-root',
@@ -75,10 +85,11 @@ export class AppComponent {
     { title: 'Add product', url: '/products/add', icon: 'add' },
   ];
 
+
   constructor() {
     addIcons({  personOutline, personSharp, pricetagOutline, pricetagSharp, addOutline, addSharp, bagSharp, bagOutline, logIn, documentText,
     arrowUndoCircle, camera, images, checkmarkCircle, add, menu, trash, eye, close, logOut, pencil, informationCircle, pricetag, location, heart, heartOutline,
-    cashOutline, filterOutline, mapOutline, navigate, createOutline, lockClosedOutline, cameraOutline, logoGoogle, logoFacebook});
+    cashOutline, filterOutline, mapOutline, navigate, createOutline, lockClosedOutline, cameraOutline, logoGoogle, logoFacebook, image, starHalf, star});
 
     effect(() => {
       if (this.#authService.isLogged()) {

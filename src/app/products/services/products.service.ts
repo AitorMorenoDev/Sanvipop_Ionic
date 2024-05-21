@@ -117,8 +117,15 @@ export class ProductsService {
     return this.#http.delete<void>(`${this.#productsUrl}/${id}/photos/${idPhoto}`);
   }
 
+  // Change the main photo of a product
   mainPhoto(id: number, idPhoto: number): Observable<void> {
     return this.#http
       .put<void>(`${this.#productsUrl}/${id}`, {mainPhoto: idPhoto});
+  }
+
+  // Rate a sale
+  rateSale(id: number, rating: number, comment: string): Observable<void> {
+    return this.#http
+      .post<void>('/ratings', {rating, comment});
   }
 }

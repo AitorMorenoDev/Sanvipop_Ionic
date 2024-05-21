@@ -21,4 +21,13 @@
       </ion-card-subtitle>
     </ion-card-content>
   </ion-card>
+
+  <ion-button (click)="rateSale()">
+      <ion-icon name="star-Half"></ion-icon>
+    @if (product()!.mine) {
+      Rate the buyer
+    } @else {
+      Rate the seller
+    }
+  </ion-button>
 </ion-content>

@@ -16,10 +16,13 @@ import { environment } from './environments/environment';
 import {baseUrlInterceptor} from "./app/interceptors/base-url.interceptor";
 import {authTokenInterceptor} from "./app/interceptors/auth-token.interceptor";
 import {provideBingmapsKey} from "./app/bingmaps/bingmaps.config";
+import { register } from 'swiper/element/bundle';
 
 if (environment.production) {
   enableProdMode();
 }
+
+register();
 
 bootstrapApplication(AppComponent, {
   providers: [
