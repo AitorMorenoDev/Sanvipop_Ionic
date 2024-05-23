@@ -1,8 +1,8 @@
 export interface UserLogin {
   email: string;
   password: string;
-  lat?: number | undefined;
-  lng?: number | undefined;
+  lat?: number;
+  lng?: number;
   firebaseToken?: string // For push notifications
 }
 

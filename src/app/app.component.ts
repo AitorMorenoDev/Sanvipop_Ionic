@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import {Component, effect, inject} from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import {HttpClientModule} from "@angular/common/http";
-//import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import {
   IonApp,
   IonSplitPane,
@@ -108,7 +108,7 @@ export class AppComponent {
       SplashScreen.hide().then();
       StatusBar.setBackgroundColor({color: '#3880ff'}).then();
       StatusBar.setStyle({style: Style.Dark}).then();
-      //GoogleAuth.signIn().then();
+      GoogleAuth.initialize().then();
     }
   }
 

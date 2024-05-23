@@ -4,6 +4,7 @@ import {map, Observable} from 'rxjs';
 import {Product, ProductInsert, ProductUpdate} from '../interfaces/product';
 import {ProductsResponse, SingleProductResponse} from '../interfaces/responses';
 import {Photo} from "../interfaces/photo";
+import {Rating, RatingInsert} from "../interfaces/rating";
 
 @Injectable({
   providedIn: 'root'
@@ -124,8 +125,20 @@ export class ProductsService {
   }
 
   // Rate a sale
-  rateSale(id: number, rating: number, comment: string): Observable<void> {
+  rateSale(product: number, rating: number, comment: string): Observable<RatingInsert> {
     return this.#http
-      .post<void>('/ratings', {rating, comment});
+      .post<RatingInsert>('ratings', {rating, comment, product});
+  }
+
+  //Get my ratings
+  getOwnRatings(): Observable<Rating[]> {
+    return this.#http
+      .get<Rating[]>('ratings/user/me');
+  }
+
+  //Get ratings of a user
+  getUserRatings(userId: number): Observable<Rating[]> {
+    return this.#http
+      .get<Rating[]>(`ratings/user/${userId}`);
   }
 }

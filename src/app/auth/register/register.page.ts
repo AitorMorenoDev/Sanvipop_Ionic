@@ -18,7 +18,7 @@ import {Coordinates} from "../../bingmaps/coordinates";
 })
 export class RegisterPage implements OnInit {
 
-  coords?: Coordinates;
+  coords?: Coordinates = {latitude: 0, longitude: 0};
 
   user: User = {
     name: '',

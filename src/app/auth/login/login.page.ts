@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, NgZone, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -19,8 +19,9 @@ import {RouterLink} from "@angular/router";
 import {Geolocation} from "@capacitor/geolocation";
 import {Coordinates} from "../../bingmaps/coordinates";
 import {UserLogin} from "../interfaces/user";
-//import { GoogleAuth, User } from '@codetrix-studio/capacitor-google-auth';
 import { FacebookLogin, FacebookLoginResponse } from '@capacitor-community/facebook-login';
+import {Observable} from "rxjs";
+import {GoogleAuth, User} from "@codetrix-studio/capacitor-google-auth";
 
 @Component({
   selector: 'app-login',
@@ -33,12 +34,13 @@ export class LoginPage implements OnInit {
   email='';
   password='';
   coords?: Coordinates;
-  //user!: User;
-  accessToken = '';
+  userGoogle!: User;
+  accessToken='';
 
   #authService = inject(AuthService);
   #alertCtrl = inject(AlertController);
   #navCtrl = inject(NavController);
+  #ngZone = inject(NgZone);
 
   async ngOnInit() {
     try {
@@ -80,14 +82,22 @@ export class LoginPage implements OnInit {
   }
 
   async googleLogin() {
-    /*try {
-      console.log('Starting Google sign-in');
-      console.log(this.user);
-      this.user = await GoogleAuth.signIn();
-      console.log('Google sign-in successful', this.user);
+    try {
+      this.userGoogle = await GoogleAuth.signIn();
+
+      this.#authService.loginGoogle({
+        token: this.userGoogle.authentication.idToken,
+        lat: this.coords?.latitude,
+        lng: this.coords?.longitude
+      }).subscribe(() => {
+        this.#ngZone.run(() => {
+          this.#navCtrl.navigateRoot('/products');
+        });
+        }
+      );
     } catch (err) {
       console.error(err);
-    }*/
+    }
   }
 
   async fbLogin() {
@@ -96,6 +106,23 @@ export class LoginPage implements OnInit {
     })) as FacebookLoginResponse;
     if (resp.accessToken) {
       this.accessToken = resp.accessToken.token;
+      console.log(this.accessToken);
+      this.#authService.loginFacebook({
+        token: this.accessToken,
+        lat: this.coords?.latitude,
+        lng: this.coords?.longitude
+      }).subscribe(() => {
+        console.log("AQUI ENTRA")
+        this.#ngZone.run(() => {
+          console.log("¿Y aqui?")
+          this.#navCtrl.navigateRoot('/products');
+        });
+      });
     }
+  }
+
+  async fbLogOut() {
+    await FacebookLogin.logout()
+    this.accessToken = '';
   }
 }

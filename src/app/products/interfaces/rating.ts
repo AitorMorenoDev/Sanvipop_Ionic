@@ -2,12 +2,9 @@ import {Product} from "./product";
 import {User} from "../../auth/interfaces/user";
 
 export interface RatingInsert {
-  sellerRating: number;
-  buyerRating: number;
-  sellerComment: string;
-  buyerComment: string;
-  dateTransaction: string;
+  rating: number;
   product: number;
+  comment: string;
 }
 
 export interface Rating extends Omit<RatingInsert, "product"> {
